@@ -1,0 +1,12 @@
+nav {
+    background-color: #FFF; padding: 5px; margin: 5px; width: 20%; opacity: 0.9; float: left; border: 2px solid; border-radius: 25px;
+}
+header {
+    background-color: #FFF; padding: 5px; margin: 5px; opacity: 0.9; border: 2px solid; border-radius: 25px;
+}
+footer {
+    background-color: #FFF; padding: 5px; margin: 5px; opacity: 0.9; float: bottom; border: 2px solid; border-radius: 25px;
+}
+article {
+    background-color: #FFF; padding: 5px; margin: 5px;opacity: 0.9; width: 75%; float: right; border: 2px solid; border-radius: 25px;
+}
