@@ -116,17 +116,38 @@ and open the template in the editor.
 //                
 //                setPixel( h * 10 / -3, rs, 255, 0, 0, 64 ); 
 
+
+            function drawXZCircle( x, y, z, r, colour ) {
+
+                var px;
+                var py;
+
+
                 for (var a = 0; a < 360; a += 1.0   ) {
                     
                     var sin = ( Math.sin( a * rad1 ) );
                     var cos = ( Math.cos( a * rad1 ) );
                            
-                    x = getX( 4 * r * cos, 3 + r * sin );
-                    y = getY( h, 3 + r * sin );
+                    px = getX( x + 4 * r * cos, z + r * sin );
+                    py = getY( y, z + r * sin );
                     
-                    var colour = 255;// ( ( a - 180 ) / 180 ) * 255;
-                    setPixel( x, y, colour, colour, colour , 255 ); 
+                    setPixel( px, py, colour, colour, colour , 255 ); 
                 }
+            }
+            
+            function drawSphere( x, y, z, r ) {
+                for ( var vx = -0.0; vx < 90; vx += 2 ) {
+
+                    var sin = Math.cos( rad1 * vx ) * r;
+
+                    drawXZCircle( x, y + (vx / 10 ), z, sin, vx * ( 255 / 90 ));
+                    drawXZCircle( x, y - (vx / 10 ), z, sin, vx * ( 255 / 90 ));
+                }
+            }
+            
+            drawSphere( 0, 0, 5, 4 );
+            
+            
 //            }
     
 
