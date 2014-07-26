@@ -47,13 +47,6 @@ and open the template in the editor.
             var xrad;
             var rad1 = 2 * Math.PI / 360;
 
-//    var steps = 255;
-//    
-//    for (var i = 0; i < steps; i++) {
-//        setPixel( ( 128 + 64 * Math.cos(2 * Math.PI * i / steps)), ( 85 + 64 * Math.sin(2 * Math.PI * i / steps)), 0, 255, 0, 255);     
-//    }
-
-
             function getX( x, z ) {
                 return 128 + ( ( x )/(z/16) );
             }
@@ -78,29 +71,64 @@ and open the template in the editor.
                 setPixel( getX( -64, z), getY( 63, z), 255, 0, 0, 255);        
             }
 
-//            setPixel( getX( 32, 32), getY( -32, 32), 0, 0, 0, 255);        
-//            setPixel( getX( -32, 32), getY( -32, 32), 0, 255, 0, 255);        
-//            setPixel( getX( 32, 32), getY( 32, 32), 0, 0, 255, 255);        
-//            setPixel( getX( -32, 32), getY( 32, 32), 255, 0, 0, 255);        
-    
-            for (var r = 180; r < 360; r += 8.0   ) {
-                x = getX( 2 * ( Math.cos( r * rad1 ) ), 1 );
-                y = getY( -16, 8 + 2 * ( Math.sin( r * rad1 ) ) );
-                setPixel( x, y, 0, 255, 255, 128);
-                
-            }
-    
-            for (var a = 90; a < 270; a += 8.0   ) {
-//        
-//                var z = Math.abs( a - 180 ) + 1;
+
+            function height( x, z ) {
+                return ( ( x * x )  ) - ( ( z * z ) );
+            } 
+            
+            var lastX = getX( -10, 2);
+            var lastY = getY( -4 + height( -5, 0.5 ) );
+            var px;
+            var py;
+            
+//            for ( x = -10; x < 10; x+= 0.1 ) {
 //                
-//                setPixel( a, a, 0, 255, 0, 255);        
-                x = getX( 2 * ( Math.cos( a * rad1 ) ), 1 );
-                y = getY( 2 * ( Math.sin( a * rad1 ) ), 1 );
-                setPixel( x, y, 255, 255, 255, 128);
-                                
+//                lastX = getX( x, 2);
+//                lastY = getY( -4 + height( x / 2, z / 4 ) );
+//
+//                for ( z = 2; z < 20; z += 0.1 ) {
 //            
-            }
+//                    px = getX( x, z );
+//                    py = getY( -4 + height( x / 2, z / 4 ), z );
+//                    
+////                    ctx.beginPath();
+////                    ctx.moveTo( lastX, lastY );
+////                    ctx.lineTo( px, py );
+////                    ctx.closePath();
+////                    ctx.stroke();
+//
+//                    setPixel( px, py, 255, 255, 255, 128);                     
+//                    
+//                    lastX = px;
+//                    lastY = py;
+//                }
+//            }
+
+
+    
+    
+            var r = 2 ;
+            var h = -3;
+//           for ( var rs = 150; rs < 180; rs += 1 ) {
+//                
+//                h = -3 + Math.sin( rs * rad1 ) * -3;
+//                r = Math.sin( rs * rad1 ) * 2;
+//                
+//                setPixel( h * 10 / -3, rs, 255, 0, 0, 64 ); 
+
+                for (var a = 0; a < 360; a += 1.0   ) {
+                    
+                    var sin = ( Math.sin( a * rad1 ) );
+                    var cos = ( Math.cos( a * rad1 ) );
+                           
+                    x = getX( 4 * r * cos, 3 + r * sin );
+                    y = getY( h, 3 + r * sin );
+                    
+                    var colour = 255;// ( ( a - 180 ) / 180 ) * 255;
+                    setPixel( x, y, colour, colour, colour , 255 ); 
+                }
+//            }
+    
 
 //            for (var x = 0; x < 512; x+= 8) {
 //                for (var y = 0; y < 512; y+= 8) {
@@ -117,9 +145,6 @@ and open the template in the editor.
 //                }
 //            }
 
-            
-
-            alert("parla!");
         </script>
     </body>
 </html>
