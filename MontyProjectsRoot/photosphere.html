@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        <canvas id="drawarea"  style = 'width:512px;height:512px;' >
+            Sorry, but your browser can't play this content.
+        </canvas>
+
+        <script>
+
+            function getPixelForOffset(x, y) {
+                return ((x % 32) > 16.0) && ((y % 32) > 16.0);
+            }
+
+            function setPixel( x, y, r, g, b, a) {
+                
+                var fx = Math.floor( x );
+                var fy = Math.floor( y );
+                
+                ctx.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
+                ctx.fillRect( fx, fy, 1, 1 );
+                
+//                var index = (fx + fy * imageData.width) * 4;
+//                imageData.data[index + 0] = r;
+//                imageData.data[index + 1] = g;
+//                imageData.data[index + 2] = b;
+//                imageData.data[index + 3] = a;
+            }
+
+            var element = document.getElementById("drawarea");
+            var ctx = element.getContext("2d");
+            
+            ctx.fillStyle = "rgba("+128+","+128+","+128+","+(1)+")";
+            ctx.fillRect( 0, 0, 512, 512 );
+
+
+
+
+            var xrad;
+            var rad1 = 2 * Math.PI / 360;
+
+//    var steps = 255;
+//    
+//    for (var i = 0; i < steps; i++) {
+//        setPixel( ( 128 + 64 * Math.cos(2 * Math.PI * i / steps)), ( 85 + 64 * Math.sin(2 * Math.PI * i / steps)), 0, 255, 0, 255);     
+//    }
+
+
+            function getX( x, z ) {
+                return 128 + ( ( x )/(z/16) );
+            }
+            
+            function getY( y, z ) {
+                return 64 + ( - y)/(z/16);
+            }
+            
+            
+    
+            var lastX = 0;
+            var lastY = 0;
+            var x;
+            var y;
+            var z;
+            
+            
+            for ( z = 1; z < 255; z+=8) {
+                setPixel( getX( 128, z), getY( -63, z), 0, 0, 0, 255);        
+                setPixel( getX( -64, z), getY( -63, z), 0, 255, 0, 255);        
+                setPixel( getX( 128, z), getY( 63, z), 0, 0, 255, 255);        
+                setPixel( getX( -64, z), getY( 63, z), 255, 0, 0, 255);        
+            }
+
+//            setPixel( getX( 32, 32), getY( -32, 32), 0, 0, 0, 255);        
+//            setPixel( getX( -32, 32), getY( -32, 32), 0, 255, 0, 255);        
+//            setPixel( getX( 32, 32), getY( 32, 32), 0, 0, 255, 255);        
+//            setPixel( getX( -32, 32), getY( 32, 32), 255, 0, 0, 255);        
+    
+            for (var r = 180; r < 360; r += 8.0   ) {
+                x = getX( 2 * ( Math.cos( r * rad1 ) ), 1 );
+                y = getY( -16, 8 + 2 * ( Math.sin( r * rad1 ) ) );
+                setPixel( x, y, 0, 255, 255, 128);
+                
+            }
+    
+            for (var a = 90; a < 270; a += 8.0   ) {
+//        
+//                var z = Math.abs( a - 180 ) + 1;
+//                
+//                setPixel( a, a, 0, 255, 0, 255);        
+                x = getX( 2 * ( Math.cos( a * rad1 ) ), 1 );
+                y = getY( 2 * ( Math.sin( a * rad1 ) ), 1 );
+                setPixel( x, y, 255, 255, 255, 128);
+                                
+//            
+            }
+
+//            for (var x = 0; x < 512; x+= 8) {
+//                for (var y = 0; y < 512; y+= 8) {
+//
+//                    for (var z = 1; z < 512; z+=8) {
+//                        setPixel( x, z, 255, 0, 0, 255);
+//                        if (getPixelForOffset(x + 8, y - 8)) {
+//                            setPixel( 512 * x / z, 512 * y / z, 255, 0, 0, 255);
+//                        } else {
+//                            setPixel( 512 * x / z, 512 * y / z, 0, 0, 255, 255);
+//                        }
+//                    }
+//
+//                }
+//            }
+
+            
+
+            alert("parla!");
+        </script>
+    </body>
+</html>
