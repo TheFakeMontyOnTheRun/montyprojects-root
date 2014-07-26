@@ -131,12 +131,14 @@ and open the template in the editor.
                     px = getX( x + 4 * r * cos, z + r * sin );
                     py = getY( y, z + r * sin );
                     
-                    setPixel( px, py, colour, colour, colour , 255 ); 
+//                    colour = ( ( a % 45 ) / 45 ) * 255;
+                    
+                    setPixel( px, py, colour, colour, colour, 64 ); 
                 }
             }
             
             function drawSphere( x, y, z, r ) {
-                for ( var vx = -0.0; vx < 90; vx += 2 ) {
+                for ( var vx = -0.0; vx < 90; vx += 1 ) {
 
                     var sin = Math.cos( rad1 * vx ) * r;
 
@@ -147,6 +149,7 @@ and open the template in the editor.
             
             drawSphere( 0, 0, 5, 4 );
             
+//            drawXZCircle( 0, -2, 3, 2, 255 );
             
 //            }
     
